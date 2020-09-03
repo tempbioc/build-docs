@@ -1,0 +1,15 @@
+name: 'Build docs'
+description: 'Builds custom rOpenSci pkgdown site from  a git remote.'
+inputs:
+  repo_url:
+    description: 'URL of the git repository'
+    required: true
+  deploy_url:
+    description: 'URL where the package will be deployed'
+    required: true
+runs:
+  using: 'docker'
+  image: 'docker://runiverse/build-docs'
+  args:
+    - ${{ inputs.repo_url }}
+    - ${{ inputs.deploy_url }}
