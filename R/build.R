@@ -13,7 +13,7 @@ build_site <- function(repo_url, deploy_url){
   zipfile <- file.path(getwd(), 'docs.zip')
   # Clone the repo and cd in it
   src <- tempfile()
-  gert::git_clone(repo_url, path = src, verbose = TRUE)
+  gert::git_clone(repo_url, path = src, verbose = FALSE)
   pwd <- getwd()
   on.exit(setwd(pwd), add = TRUE)
   setwd(src)
