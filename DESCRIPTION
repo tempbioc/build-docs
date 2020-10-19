@@ -19,5 +19,4 @@ Imports:
   xml2,
   yaml
 Remotes:
-    r-lib/gert,
     ropensci/rotemplate
