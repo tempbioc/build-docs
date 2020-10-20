@@ -32,11 +32,11 @@ build_site <- function(repo_url, deploy_url){
   if(!length(home_files))
     stop("Package does not contain an index.(r)md or README.(r)md file")
 
-  # Install package locally
-  utils::setRepositories(ind = 1:2)
-  my_repo <- Sys.getenv("UNIVERSE_REPO")
-  if(nchar(my_repo))
-    options(repos = c("universe" = my_repo, getOption('repos')))
+  # This is done by Rprofile in runiverse/base image already
+  #utils::setRepositories(ind = 1:2)
+  #my_repo <- Sys.getenv("UNIVERSE_REPO")
+  #if(nchar(my_repo))
+  #  options(repos = c("universe" = my_repo, getOption('repos')))
 
   # Extra packages
   try(install_pkgdown_packages())
