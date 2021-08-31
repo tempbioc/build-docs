@@ -85,6 +85,10 @@ build_site <- function(repo_url, deploy_url){
   setwd(dirname(tmp))
   zip::zip(zipfile, basename(tmp))
   invisible(zipfile)
+
+  # Set GHA output, for now just echo input
+  cat(sprintf('::set-output name=docs_url::%s\n', deploy_url))
+  cat("All done!\n")
 }
 
 install_pkgdown_packages <- function(){
