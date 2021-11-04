@@ -57,7 +57,8 @@ build_site <- function(repo_url, deploy_url){
         api_key = '799829e946e1f0f9cd5b5a782c6316b9',
         index_name = paste0('ropensci-', tolower(pkg))
       )
-    )
+    ),
+    mathjax = need_mathjax()
   )
   if(!isTRUE(grepl('ropenscilabs', repo_url))){
     template$package = "rotemplate"
@@ -101,4 +102,15 @@ install_pkgdown_packages <- function(){
       remotes::install_github(gh_pkgs, upgrade = FALSE)
     }
   }
+}
+
+need_mathjax <- function(){
+  isTRUE(try({
+    if(file.exists('_pkgdown.yml')){
+      pkgdown_config <- yaml::read_yaml('_pkgdown.yml')
+      if(isTRUE(pkgdown_config$mathjax) || isTRUE(pkgdown_config$template$params$mathjax)){
+        return(TRUE)
+      }
+    }
+  }))
 }
