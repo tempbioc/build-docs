@@ -4,18 +4,18 @@
 \alias{build_site}
 \title{Build rOpenSci docs}
 \usage{
-build_site(repo_url, deploy_url)
+build_site(repo_url, deploy_url = NULL)
 }
 \arguments{
 \item{repo_url}{full URL of the git remote (used to customize the template)}
 
-\item{deploy_url}{URL where the sites will be hosted}
+\item{deploy_url}{deprecated}
 }
 \description{
 Builds custom rOpenSci pkgdown site from  a git remote.
 }
 \examples{
 \dontrun{
-build_site('https://github.com/ropensci/magick', 'https://docs.ropensci.org/magick')
+build_site('https://github.com/ropensci/magick')
 }
 }

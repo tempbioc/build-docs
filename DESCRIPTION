@@ -1,22 +1,21 @@
 Package: rodocs
 Type: Package
 Title: Build rOpenSci pkgdown docs
-Version: 0.1.1
+Version: 2.0.0
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen@berkeley.edu>
 Description: Builds custom rOpenSci pkgdown site from  a git remote.
 License: Apache License 2.0
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Imports: 
-  commonmark,
   gert,
+  gh,
   jsonlite,
-  pkgdown,
   remotes,
-  rotemplate,
-  xml2,
-  yaml
+  rotemplate (>= 2.0.0),
+  yaml,
+  zip
 Remotes:
     ropensci/rotemplate
