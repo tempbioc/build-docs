@@ -63,5 +63,10 @@ install_pkgdown_packages <- function(){
     if(length(gh_pkgs)){
       remotes::install_github(gh_pkgs, upgrade = FALSE)
     }
+    apt_pkgs <- c(pkgdown_config$apt_packages)
+    if(length(apt_pkgs)){
+      system("apt-get update")
+      system(paste("apt-get install -y", paste(apt_pkgs, collapse = " ")))
+    }
   }
 }
