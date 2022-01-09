@@ -1,6 +1,7 @@
 #' Build rOpenSci docs
 #'
-#' Builds custom rOpenSci pkgdown site from  a git remote.
+#' Builds custom rOpenSci pkgdown site from  a git remote, and store in
+#' a zip file to be saved as a CI artifact.
 #'
 #' @rdname build
 #' @param repo_url full URL of the git remote (used to customize the template)

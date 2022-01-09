@@ -12,7 +12,8 @@ build_site(repo_url, deploy_url = NULL)
 \item{deploy_url}{deprecated}
 }
 \description{
-Builds custom rOpenSci pkgdown site from  a git remote.
+Builds custom rOpenSci pkgdown site from  a git remote, and store in
+a zip file to be saved as a CI artifact.
 }
 \examples{
 \dontrun{

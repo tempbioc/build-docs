@@ -11,7 +11,6 @@ LazyData: true
 RoxygenNote: 7.1.2
 Imports: 
   gert,
-  gh,
   jsonlite,
   remotes,
   rotemplate (>= 2.0.0),
