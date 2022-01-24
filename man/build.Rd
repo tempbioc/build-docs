@@ -4,12 +4,14 @@
 \alias{build_site}
 \title{Build rOpenSci docs}
 \usage{
-build_site(repo_url, deploy_url = NULL)
+build_site(repo_url, subdir = "", registry = NULL)
 }
 \arguments{
 \item{repo_url}{full URL of the git remote (used to customize the template)}
 
-\item{deploy_url}{deprecated}
+\item{subdir}{subdirectory with package repository}
+
+\item{registry}{name of the registry that owns the package (not yet in)}
 }
 \description{
 Builds custom rOpenSci pkgdown site from  a git remote, and store in

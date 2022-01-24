@@ -5,19 +5,21 @@
 #'
 #' @rdname build
 #' @param repo_url full URL of the git remote (used to customize the template)
-#' @param deploy_url deprecated
+#' @param subdir subdirectory with package repository
+#' @param registry name of the registry that owns the package (not yet in)
 #' @export
 #' @examples \dontrun{
 #' build_site('https://github.com/ropensci/magick')
 #' }
-build_site <- function(repo_url, deploy_url = NULL){
+build_site <- function(repo_url, subdir = "", registry = NULL){
   zipfile <- file.path(getwd(), 'docs.zip')
   # Clone the repo and cd in it
-  src <- tempfile()
+  src <- file.path(tempdir(), paste0(basename(repo_url), '-source'))
   gert::git_clone(repo_url, path = src, verbose = FALSE)
   pwd <- getwd()
+  pkgdir <- normalizePath(file.path(src, subdir), mustWork = TRUE)
   on.exit(setwd(pwd), add = TRUE)
-  setwd(src)
+  setwd(pkgdir)
 
   # Some checks
   if(!file.exists('DESCRIPTION'))

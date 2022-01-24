@@ -4,12 +4,19 @@ inputs:
   repo_url:
     description: 'URL of the git repository'
     required: true
+  subdir:
+    description: 'Subdirectory containing the R package'
+    required: false
+  registry:
+    description: 'Name of the registry that owns the package'
+    required: false
   deploy_url:
-    description: 'URL where the package will be deployed'
-    required: true
+    description: 'deprecated'
+    required: false
 runs:
   using: 'docker'
   image: 'docker://runiverse/build-docs'
   args:
     - ${{ inputs.repo_url }}
-    - ${{ inputs.deploy_url }}
+    - ${{ inputs.subdir }}
+    - ${{ inputs.registry }}
