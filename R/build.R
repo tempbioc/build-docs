@@ -26,6 +26,19 @@ build_site <- function(repo_url, subdir = "", registry = NULL){
     stop("Remote does not contain an R package")
   pkginfo <- as.data.frame(read.dcf('DESCRIPTION'))
 
+  # Try to install missing sysdeps.
+  # This only installs the first match; system_requirements may return many recursive sysdeps.
+  # But most sysdeps are preinstalled for us anyway
+  ubuntu <- gsub(" ", "-", tolower(substring(utils::osVersion,1,12)))
+  tryCatch({
+    aptline <- remotes::system_requirements(ubuntu)
+    if(length(aptline) && !grepl('(libcurl|pandoc)', aptline[1])){
+      system(aptline[1])
+    }
+  }, error = function(e){
+    message("Problem looking for system requirements: ", e$message)
+  })
+
   # Extra packages
   try(install_pkgdown_packages())
   Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS=TRUE)
