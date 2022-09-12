@@ -35,11 +35,12 @@ build_site <- function(repo_url, subdir = "", registry = NULL){
   #ubuntu <- gsub(" ", "-", tolower(substring(utils::osVersion,1,12)))
   tryCatch({
     aptline <- remotes::system_requirements(ubuntu)
+    system("apt-get update")
     if(length(aptline) && !grepl('(libcurl|pandoc)', aptline[1])){
       system(aptline[1])
     }
     # Special case extra libs that we don't have in the base image
-    extras <- grep('qgis|librdf0-dev', aptline, value = TRUE)
+    extras <- grep('qgis|default-jdk', aptline, value = TRUE)
     lapply(extras, system)
   }, error = function(e){
     message("Problem looking for system requirements: ", e$message)
