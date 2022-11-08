@@ -47,7 +47,7 @@ build_site <- function(repo_url, subdir = "", registry = NULL){
   })
 
   # Extra packages
-  try(install_pkgdown_packages())
+  try(install_pkgdown_packages(pkginfo))
   Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS=TRUE)
   remotes::install_deps(dependencies = TRUE, upgrade = TRUE)
   remotes::install_local()
@@ -73,7 +73,13 @@ build_site <- function(repo_url, subdir = "", registry = NULL){
   invisible(zipfile)
 }
 
-install_pkgdown_packages <- function(){
+install_pkgdown_packages <- function(pkginfo){
+  names(pkginfo) <- tolower(names(pkginfo))
+  needs <- pkginfo[['config/needs/website']]
+  if(length(needs)){
+    needs_pkgs <- trimws(strsplit(needs, ',')[[1]])
+    remotes::install_cran(needs_pkgs, upgrade = FALSE)
+  }
   if(file.exists('_pkgdown.yml')){
     pkgdown_config <- yaml::read_yaml('_pkgdown.yml')
     extra_pkgs <- c(pkgdown_config$extra_packages)
