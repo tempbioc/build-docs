@@ -1,4 +1,4 @@
-FROM runiverse/base
+FROM ghcr.io/r-universe-org/base-image
 
 COPY . /rodocs
 RUN R -e 'install.packages("remotes"); remotes::install_local("/rodocs")'
